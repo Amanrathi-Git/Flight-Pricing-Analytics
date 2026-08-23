@@ -30,9 +30,7 @@ This project develops an end-to-end Machine Learning pipeline to predict airline
 > *Copy the entire code block below to run the complete pipeline from start to finish:*
 
 python
-# =====================================================================
 # FLIGHT PRICE PREDICTION: END-TO-END MACHINE LEARNING PIPELINE
-# =====================================================================
 
 ```
 import pandas as pd
@@ -43,14 +41,14 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 ```
-# ---------------------------------------------------------------------
+
 # 1️⃣ DATA LOADING & EXPLORATORY DATA ANALYSIS (EDA)
-# ---------------------------------------------------------------------
-# EXPLANATION:
-# The first phase involves loading the raw dataset and understanding its underlying structure 
-# and distributions. Exploratory data analysis is crucial because it helps identify categorical 
-# variables, check for missing values, and understand general characteristics (such as min, 
-# max, and median values) of our target variable (price) and continuous features like flight duration.
+
+## EXPLANATION:
+The first phase involves loading the raw dataset and understanding its underlying structure 
+and distributions. Exploratory data analysis is crucial because it helps identify categorical 
+variables, check for missing values, and understand general characteristics (such as min, 
+max, and median values) of our target variable (price) and continuous features like flight duration.
 
 ```
 df = pd.read_csv('Clean_Dataset.csv')
@@ -62,16 +60,13 @@ print("\n--- Price Summary Statistics ---")
 print(df.price.describe())
 ```
 
-# ---------------------------------------------------------------------
 # 2️⃣ DATA PREPROCESSING & FEATURE ENGINEERING
-# ---------------------------------------------------------------------
-# EXPLANATION:
-# Machine Learning models cannot process raw text data directly; they require strict numerical input. 
-# Therefore, feature engineering and transformations are applied:
-# - Feature Removal: Non-predictive identifier columns (Unnamed: 0 and flight) are completely dropped.
-# - Binary Encoding: The travel class feature is mapped into binary format (1 for Business, 0 for Economy).
-# - Label Encoding: The stops attribute is transformed into an ordered numerical format using pd.factorize().
-# - One-Hot Encoding: Nominal categorical variables are converted into distinct boolean columns using pd.get_dummies().
+## EXPLANATION:
+* Machine Learning models cannot process raw text data directly; they require strict numerical input.Therefore, feature engineering and transformations are applied:
+* **Feature Removal:** Non-predictive identifier columns (Unnamed: 0 and flight) are completely dropped.
+* **Binary Encoding:** The travel class feature is mapped into binary format (1 for Business, 0 for Economy).
+* **Label Encoding:** The stops attribute is transformed into an ordered numerical format using **pd.factorize()**.
+* **One-Hot Encoding:** Nominal categorical variables are converted into distinct boolean columns using **pd.get_dummies()**.
 
 ```
 df = df.drop(['Unnamed: 0', 'flight'], axis=1)
@@ -84,29 +79,22 @@ for col in categorical_cols:
     df = df.join(pd.get_dummies(df[col], prefix=col, dtype=int)).drop(col, axis=1)
 
 ```
-# ---------------------------------------------------------------------
 # 3️⃣ TRAIN-TEST SPLIT
-# ---------------------------------------------------------------------
-# EXPLANATION:
-# To accurately evaluate how well the model learns and generalizes, the data must be split. 
-# The target variable (price) is isolated into vector y, while the remaining attributes form the 
-# feature matrix x. The dataset is then divided using train_test_split, allocating 80% of the data 
-# for training and holding back 20% to test the model's predictive accuracy on completely unseen data.
+## EXPLANATION:
+* To accurately evaluate how well the model learns and generalizes, the data must be split. 
+* The target variable (price) is isolated into vector y, while the remaining attributes form the 
+* feature matrix x. The dataset is then divided using **train_test_split**, allocating **80%** of the data 
+* for training and holding back **20%** to test the model's predictive accuracy on completely unseen data.
 
 ```
 x, y = df.drop('price', axis=1), df.price
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 ```
-
-# ---------------------------------------------------------------------
 # 4️⃣ MODEL TRAINING & HYPERPARAMETER TUNING
-# ---------------------------------------------------------------------
-# EXPLANATION:
-# A Random Forest Regressor is chosen for its powerful performance on complex, non-linear tabular datasets. 
-# To maximize model accuracy and prevent overfitting, GridSearchCV is implemented to systematically test 
-# combinations of hyperparameters—such as the number of trees (n_estimators), maximum tree depth (max_depth), 
-# and split criteria. The grid search is fit on an optimized training sample subset to ensure smooth 
-# resource allocation while maintaining high model performance.
+## EXPLANATION:
+* A Random Forest Regressor is chosen for its powerful performance on complex, non-linear tabular datasets. 
+* To maximize model accuracy and prevent overfitting. **GridSearchCV** is implemented to systematically test combinations of hyperparameters—such as the number of trees **(n_estimators)**, maximum tree depth **(max_depth)**and split criteria.
+* The grid search is fit on an optimized training sample subset to ensure smooth resource allocation while maintaining high model performance.
 
 ```
 param_grid = {
@@ -134,13 +122,11 @@ best_reg = grid_search.best_estimator_
 print("\nBest Parameters Found:", grid_search.best_params_)
 
 ```
-# ---------------------------------------------------------------------
 # 5️⃣ MODEL EVALUATION
-# ---------------------------------------------------------------------
-# EXPLANATION:
-# The optimized model is evaluated against the unseen 20% test partition to quantify its real-world 
-# predictive performance. Standard regression metrics are calculated, including R^2 Score, Mean 
-# Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE).
+## EXPLANATION:
+* The optimized model is evaluated against the unseen **20%** test partition to quantify its real-world 
+* predictive performance. Standard regression metrics are calculated, including **R^2 Score**, Mean 
+* Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE).
 
 ```
 y_pred = best_reg.predict(x_test)
@@ -151,14 +137,12 @@ print('MSE: ', mean_squared_error(y_test, y_pred))
 print('RMSE: ', math.sqrt(mean_squared_error(y_test, y_pred)))
 
 ```
-# ---------------------------------------------------------------------
 # 6️⃣ DATA VISUALIZATION
-# ---------------------------------------------------------------------
-# EXPLANATION:
-# Visualizing actual vs. predicted values and extracting feature importances to see what 
-# drives flight price variations most.
+## EXPLANATION:
+* Visualizing **actual vs. predicted** values and extracting feature importances to see what 
+drives flight price variations most.
 
-# Scatter Plot: Actual vs Predicted
+**Scatter Plot: Actual vs Predicted**
 ```
 plt.figure(figsize=(8, 6))
 plt.scatter(y_test, y_pred, alpha=0.3)
@@ -168,10 +152,10 @@ plt.title('Prediction VS Actual Price')
 plt.show()
 ```
 # Feature Importance Bar Chart
+```
 importances = dict(zip(best_reg.feature_names_in_, best_reg.feature_importances_))
 sorted_importances = sorted(importances.items(), key=lambda x: x[1], reverse=True)
 
-```
 plt.figure(figsize=(16, 6))
 plt.bar([x[0] for x in sorted_importances[:10]], [x[1] for x in sorted_importances[:10]])
 plt.title('Top 10 Feature Importances')
