@@ -169,3 +169,52 @@ plt.bar([x[0] for x in sorted_importances[:10]], [x[1] for x in sorted_importanc
 plt.title('Top 10 Feature Importances')
 plt.xticks(rotation=45)
 plt.show()
+
+
+## 📋 Model Performance Metrics
+
+| Metric | Result | Description |
+| :--- | :--- | :--- |
+| **R² Score** | **0.954** | Explains 95.4% of variance in flight ticket prices. |
+| **MAE** | **3,044.91** | Average absolute deviation of predictions from actual prices. |
+| **MSE** | **24,113,136.21** | Penalizes larger prediction errors heavily. |
+| **RMSE** | **4,910.51** | Standard deviation of prediction errors in original currency units. |
+
+
+## 📊 Visualizations
+
+### 📈 Actual vs. Predicted Price
+A scatter plot comparing actual flight ticket fares against model predictions to evaluate accuracy visually.
+<div align="center">
+  <!-- Drag and drop your Scatter Plot screenshot here on GitHub -->
+  *[<img width="779" height="632" alt="Screenshot 2026-08-23 at 6 22 45 PM" src="https://github.com/user-attachments/assets/02d12d54-d4bb-444d-925b-5005934d5906" />
+]*
+</div>
+
+### 🏆 Feature Importance
+A bar chart highlighting the top features that drive airline ticket price predictions.
+<div align="center">
+  <!-- Drag and drop your Bar Chart screenshot here on GitHub -->
+  *[<img width="1344" height="593" alt="Screenshot 2026-08-23 at 6 40 39 PM" src="https://github.com/user-attachments/assets/7b47fb82-4b1b-40b1-bb78-8fe84f5a020e" />]*
+</div>
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+Install the required dependencies:
+```bash
+pip install pandas numpy scikit-learn scipy matplotlib
+
+### Running the Project
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/Amanrathi-Git/Flight-Pricing-Analytics.git](https://github.com/Amanrathi-Git/Flight-Pricing-Analytics.git)
+
+Download `Clean_Dataset.csv` from [Kaggle](https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction)
+
+Open and run the notebook:
+```bash
+jupyter notebook Main_.ipynb
+
