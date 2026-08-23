@@ -13,7 +13,7 @@
 ## 📖 Overview
 This project develops an end-to-end Machine Learning pipeline to predict airline ticket prices based on key travel variables such as carrier, route, departure/arrival schedules, cabin class, and transit stops. By combining exploratory data analysis, data encoding, regression modeling, and hyperparameter optimization, the model accurately predicts price variations on tabular travel datasets.
 
-🔗 **Dataset:** The dataset used for this project is available on Kaggle [here](https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction).
+🔗 **Dataset:** The dataset used for this project is available on Kaggle [here]([https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction?resource=download]).
 
 ---
 
