@@ -192,7 +192,6 @@ A scatter plot comparing actual flight ticket fares against model predictions to
 A bar chart highlighting the top features that drive airline ticket price predictions.
 
 ![Feature Importance Bar Chart](bar_graph.png)
----
 
 ## 🚀 Getting Started
 
