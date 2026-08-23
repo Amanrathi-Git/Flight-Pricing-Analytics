@@ -185,15 +185,13 @@ plt.show()
 
 ### 📈 Actual vs. Predicted Price
 A scatter plot comparing actual flight ticket fares against model predictions to evaluate accuracy visually.
-<div align="center">
-  <img src="scattered_graph.png" alt="Scatter Plot of Flight Prices" width="700">
-</div>
+
+![Scatter Plot of Flight Prices](scattered_graph.png)
 
 ### 🏆 Feature Importance
 A bar chart highlighting the top features that drive airline ticket price predictions.
-<div align="center">
-  <img src="bar_graph.png" alt="Feature Importance Bar Chart" width="700">
-</div>
+
+![Feature Importance Bar Chart](bar_graph.png)
 ---
 
 ## 🚀 Getting Started
