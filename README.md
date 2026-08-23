@@ -187,7 +187,7 @@ plt.show()
 A scatter plot comparing actual flight ticket fares against model predictions to evaluate accuracy visually.
 <div align="center">
   <!-- Drag and drop your Scatter Plot screenshot here on GitHub -->
- ![Scatter Plot of Flight Prices](images/scattered_graph.png)
+ ![Scatter Plot of Flight Prices](scattered_graph.png)
 </div>
 
 ### 🏆 Feature Importance
